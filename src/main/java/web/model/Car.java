@@ -1,15 +1,16 @@
 package web.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope(value = "prototype")
 public class Car {
 
     private String engine;
     private int number;
     private String model;
-    @Autowired
+
     public Car(){}
 
     public Car(String engine, int number, String model) {
@@ -40,5 +41,9 @@ public class Car {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public Car createCar(String engine, int number, String model) {
+        return new Car(engine, number, model);
     }
 }
